@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light" data-mode="color">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vockery — Silver Night</title>
+<meta name="description" content="Vockery — Silver Night. Конфиги, YouTube, гайды.">
+<style>
+:root{--bg:#f5f7fa;--line:rgba(70,110,180,.1);--text:#1a2233;--muted:#6b7690;--border:rgba(70,110,180,.2);--card:rgba(255,255,255,.6);--accent:#3b6fd4;--accent-soft:rgba(59,111,212,.1);--hover:rgba(59,111,212,.08);--shadow:0 2px 20px rgba(70,110,180,.08)}
+[data-theme=dark]{--bg:#0e1420;--line:rgba(120,160,220,.07);--text:#e8edf5;--muted:#7a869c;--border:rgba(120,160,220,.15);--card:rgba(20,28,44,.6);--accent:#6b9bff;--accent-soft:rgba(107,155,255,.1);--hover:rgba(107,155,255,.1);--shadow:0 2px 30px rgba(0,0,0,.35)}
+[data-mode=mono]{--bg:#fff;--line:rgba(0,0,0,.06);--text:#0a0a0a;--muted:#767676;--border:rgba(0,0,0,.12);--card:rgba(255,255,255,.7);--accent:#0a0a0a;--accent-soft:rgba(0,0,0,.06);--hover:rgba(0,0,0,.05);--shadow:0 2px 20px rgba(0,0,0,.06)}
+[data-mode=mono][data-theme=dark]{--bg:#0a0a0a;--line:rgba(255,255,255,.05);--text:#f0f0f0;--muted:#8a8a8a;--border:rgba(255,255,255,.12);--card:rgba(20,20,20,.7);--accent:#fff;--accent-soft:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--shadow:0 2px 30px rgba(0,0,0,.5)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 24px 40px;position:relative;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(45deg,var(--line) 0,var(--line) 1px,transparent 1px,transparent 24px);pointer-events:none;z-index:0;transition:background-image .3s}
+.controls{position:fixed;top:20px;right:20px;display:flex;gap:10px;z-index:10}
+.group{display:flex;gap:2px;padding:4px;background:var(--card);border:1px solid var(--border);border-radius:100px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .3s,border-color .3s}
+.group button{width:32px;height:32px;border:0;background:transparent;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .2s,background .2s}
+.group button:hover{color:var(--text)}
+.group button.active{background:var(--accent-soft);color:var(--accent)}
+.group svg{width:16px;height:16px;display:block}
+.card{position:relative;z-index:1;width:100%;max-width:440px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:44px 36px 32px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);text-align:center;transition:background .3s,border-color .3s,box-shadow .3s}
+.avatar{width:84px;height:84px;margin:0 auto 20px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:500;color:var(--accent);letter-spacing:-1px;background:var(--accent-soft);transition:all .3s}
+.nickname{font-size:28px;font-weight:600;letter-spacing:-.5px;color:var(--text);margin-bottom:6px}
+.realname{font-size:14px;color:var(--muted);letter-spacing:.2px}
+.realname .quote{color:var(--accent)}
+.facts{margin:24px 0 28px;display:flex;flex-direction:column;gap:10px;text-align:left}
+.fact{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;line-height:1.5}
+.fact .key{color:var(--muted);min-width:110px;flex-shrink:0;font-weight:500}
+.fact .val{color:var(--text)}
+.links{display:flex;flex-direction:column;gap:8px}
+.link{display:flex;align-items:center;gap:14px;padding:13px 16px;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:all .2s;background:transparent}
+.link:hover{background:var(--hover);border-color:var(--accent);transform:translateX(2px)}
+.link svg{width:18px;height:18px;flex-shrink:0;color:var(--muted);transition:color .2s}
+.link:hover svg{color:var(--accent)}
+.link .label{font-size:13px;font-weight:500;color:var(--muted);flex:1;text-align:left}
+.link .value{font-size:13px;color:var(--text);font-weight:500;letter-spacing:.2px}
+.link .arrow{color:var(--muted);opacity:0;transform:translateX(-4px);transition:all .2s;font-size:14px}
+.link:hover .arrow{opacity:1;transform:translateX(0);color:var(--accent)}
+.footer{margin-top:28px;font-size:11px;color:var(--muted);letter-spacing:.4px;opacity:.7}
+@media(max-width:480px){.controls{top:14px;right:14px;gap:8px}.group button{width:30px;height:30px}.card{padding:36px 24px 28px;border-radius:16px}.nickname{font-size:24px}.fact .key{min-width:100px;font-size:12.5px}.fact .val{font-size:12.5px}}
+@media(max-width:360px){.controls{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="controls">
+<div class="group" role="group" aria-label="Тема">
+<button data-theme-value="light" class="active" title="Светлая" aria-label="Светлая">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+<button data-theme-value="dark" title="Тёмная" aria-label="Тёмная">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+</div>
+<div class="group" role="group" aria-label="Режим">
+<button data-mode-value="color" class="active" title="Цветной" aria-label="Цветной">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.2" fill="currentColor"/><circle cx="15" cy="10" r="1.2" fill="currentColor"/><circle cx="12" cy="15" r="1.2" fill="currentColor"/></svg>
+</button>
+<button data-mode-value="mono" title="Ч/б" aria-label="Ч/б">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor" stroke="none"/></svg>
+</button>
+</div>
+</div>
+<main class="card">
+<div class="avatar">V</div>
+<h1 class="nickname">Vockery</h1>
+<p class="realname">Silver <span class="quote">«Vockery»</span> Night</p>
+<div class="facts">
+<div class="fact"><span class="key">Хобби</span><span class="val">Делаю конфиги для читов</span></div>
+<div class="fact"><span class="key">Ближайшие цели</span><span class="val">Начать вести ютуб-канал</span></div>
+<div class="fact"><span class="key">ХвХ</span><span class="val">Играю с 2018 года</span></div>
+<div class="fact"><span class="key">О себе</span><span class="val">Люблю шоколад.</span></div>
+</div>
+<nav class="links">
+<a href="https://youtube.com/@Vockery" target="_blank" rel="noopener" class="link">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+<span class="label">YouTube</span>
+<span class="value">@Vockery</span>
+<span class="arrow">→</span>
+</a>
+<a href="https://discord.com/users/3343problems" target="_blank" rel="noopener" class="link">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 17.5c-1.5-.5-2.7-1.2-3.7-2 0 0-.5-1.5.5-4 1-2.3 3-3.8 5-4l.5-.5 1.2.6 1.2-.6.5.5c2 .2 4 1.7 5 4 1 2.5.5 4 .5 4-1 .8-2.2 1.5-3.7 2l-.8-1.3c-1.2.4-2.5.4-3.7 0z"/><circle cx="9.5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="12" r="1" fill="currentColor" stroke="none"/></svg>
+<span class="label">Discord</span>
+<span class="value">@3343problems</span>
+<span class="arrow">→</span>
+</a>
+<a href="https://yougame.biz/members/450831/" target="_blank" rel="noopener" class="link">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg>
+<span class="label">YouGame</span>
+<span class="value">Vockery</span>
+<span class="arrow">→</span>
+</a>
+</nav>
+<p class="footer">© 2025 Vockery</p>
+</main>
+<script>
+const r=document.documentElement,tb=document.querySelectorAll('[data-theme-value]'),mb=document.querySelectorAll('[data-mode-value]');
+const st=v=>{r.setAttribute('data-theme',v);localStorage.setItem('vockery-theme',v);tb.forEach(b=>b.classList.toggle('active',b.dataset.themeValue===v))};
+const sm=v=>{r.setAttribute('data-mode',v);localStorage.setItem('vockery-mode',v);mb.forEach(b=>b.classList.toggle('active',b.dataset.modeValue===v))};
+st(localStorage.getItem('vockery-theme')||'light');
+sm(localStorage.getItem('vockery-mode')||'color');
+tb.forEach(b=>b.addEventListener('click',()=>st(b.dataset.themeValue)));
+mb.forEach(b=>b.addEventListener('click',()=>sm(b.dataset.modeValue)));
+</script>
+</body>
+</html>
